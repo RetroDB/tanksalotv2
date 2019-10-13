@@ -1,13 +1,15 @@
 package org.academiadecodigo.vimdiesels.tanksalot;
 
-import java.awt.*;
+
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Field {
 
     public static final int PADDING = 10;
     private int width;
     private int height;
-    private Rectangle canvas;
+    private Rectangle rect;
 
     public Field(int width, int height) {
         this.width = width;
@@ -15,15 +17,17 @@ public class Field {
     }
 
     public void init(){
-        this.canvas = new Rectangle(PADDING,PADDING,width,height);
+        this.rect = new Rectangle(PADDING,PADDING,width,height);
+        this.rect.setColor(Color.LIGHT_GRAY);
+        this.rect.fill();
 
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 

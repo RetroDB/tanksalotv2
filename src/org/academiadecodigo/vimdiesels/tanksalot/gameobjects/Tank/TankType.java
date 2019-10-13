@@ -4,8 +4,7 @@ public enum TankType {
 
     PLAYABLE_TANK(2, 2),
     LIGHT_TANK(1, 3),
-    ARMORED_TANK(3, 1),
-    PLAYER_TANK(1, 0);
+    ARMORED_TANK(3, 1);
 
     private int armor;
     private double speed;

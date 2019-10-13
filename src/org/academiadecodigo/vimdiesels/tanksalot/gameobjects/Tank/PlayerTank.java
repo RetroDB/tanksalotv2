@@ -18,7 +18,7 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
     private double speed;
     private CollisionDetector collisionDetector;
 
-    public PlayerTank(double x, double y, double width, double height, Picture pic, String path) {
+    public PlayerTank(int x, int y, int width, int height, String path) {
         super(x, y, width, height);
         this.speed = 0;
         this.pic = pic;
@@ -65,6 +65,8 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
 
 
 
+
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
@@ -78,5 +80,10 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
     @Override
     public void setCollisionDetector(CollisionDetector collisionDetector) {
         this.collisionDetector = collisionDetector;
+    }
+
+    @Override
+    public void move() {
+        //accelerate(currenDirection);
     }
 }
