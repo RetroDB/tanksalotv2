@@ -4,18 +4,17 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class NonDestroyable extends GameObjects {
 
-    private Picture pic;
+    private Picture picture;
     private String path;
+    private int x;
+    private int y;
 
-    public NonDestroyable(double x, double y, double width, double height, String Path){
-        super(x, y, width, height);
-        this.path = path;
-        this.pic = new Picture(x,y,path);
+    public NonDestroyable(int x, int y, int width, int height, String path){
+        super(x, y, width, height, path);
     }
 
-    public void drawPicture(){
-        this.pic.draw();
+    @Override
+    public void init(){
+        super.init();
     }
-
-
 }

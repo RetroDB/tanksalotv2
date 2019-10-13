@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.tanksalot.gameobjects;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
@@ -11,19 +12,25 @@ public abstract class GameObjects {
     private int width;
     private Field myField;
     private FieldDirection currentDirection;
+    private Picture pic;
 
-    public GameObjects(int x, int y, int width, int height) {
+    public GameObjects(int x, int y, int width, int height, String path) {
         this.x = x;
         this.y = y;
         this.height = height;
         this.width = width;
+        this.pic = new Picture(x,y,path);
+
     }
+
+
 
     public GameObjects(){
 
     }
 
     public void init(){
+        this.pic.draw();
 
     }
 

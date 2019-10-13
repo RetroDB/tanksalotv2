@@ -19,11 +19,8 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
     private CollisionDetector collisionDetector;
 
     public PlayerTank(int x, int y, int width, int height, String path) {
-        super(x, y, width, height);
+        super(x, y, width, height, path);
         this.speed = 0;
-        this.pic = pic;
-        this.pic = new Picture(x,y,path);
-        pic.draw();
     }
 
 
