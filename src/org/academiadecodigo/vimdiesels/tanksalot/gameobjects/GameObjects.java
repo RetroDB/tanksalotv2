@@ -24,6 +24,15 @@ public abstract class GameObjects {
 
     }
 
+    public GameObjects(int x, int y, int width, int height, Field myField) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+        this.myField = myField;
+
+    }
+
     public void init(){
         this.pic.draw();
 
