@@ -1,27 +1,28 @@
 package org.academiadecodigo.vimdiesels.tanksalot.stage;
 
+import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.NonDestroyable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank.PlayerTank;
 
 public class StageOne {
 
     private GameObjects[] elements;
     private CollisionDetector collisionDetector;
+    private Field myField;
 
 
-    public StageOne(int numberOfElements) {
+    public StageOne(int numberOfElements, Field myField) {
+        this.myField = myField;
         this.elements = new GameObjects[numberOfElements];
     }
 
     public void init(){
 
-        //this.player = new PlayerTank(450, 720, 60, 60,"./resources/pics/UpTank.png");
-
-        //player.init();
 
 
-        elements[0] = getElement(60,120, 60, 120, "/Users/codecadet/Documents/game-projects/tanksalotv2/resources/pics/lunch_table.png");
+        elements[0] = getElement(60,120, 60, 120, "./resources/pics/lunch_table.png");
         elements[1] = getElement(60,300, 60, 120, "./resources/pics/lunch_table.png");
 
         elements[2] = getElement(270,60, 270, 30,"./resources/pics/Table.png");
@@ -72,6 +73,11 @@ public class StageOne {
         elements[38]  = getElement(270,660,0,0, "resources/pics/microwave.png");
 
 
+        elements[39] = new PlayerTank(450, 720, 60, 60,"./resources/pics/UpTank.png",myField);
+
+        elements[39].init();
+
+
 
 
 
@@ -81,7 +87,7 @@ public class StageOne {
 
     public NonDestroyable getElement(int x, int y, int width, int height, String path){
 
-        NonDestroyable nonDestroyable = new NonDestroyable(x, y, width, height, path);
+        NonDestroyable nonDestroyable = new NonDestroyable(x, y, width, height, path, this.myField);
         nonDestroyable.init();
 
 

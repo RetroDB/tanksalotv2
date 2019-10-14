@@ -1,6 +1,7 @@
 package org.academiadecodigo.vimdiesels.tanksalot.stage;
 
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
+import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank.PlayerTank;
 
 public class CollisionDetector {
@@ -20,9 +21,9 @@ public class CollisionDetector {
 
     }
 
-    public boolean check(PlayerTank player) {
+    public boolean check(Movable tank) {
         for (GameObjects gameObject : gameObjects) {
-            if (collides(player, gameObject)) {
+            if (collides(tank, gameObject)) {
                 return true;
             }
         }

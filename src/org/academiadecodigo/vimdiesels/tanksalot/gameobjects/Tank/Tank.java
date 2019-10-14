@@ -2,7 +2,7 @@ package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank;
 
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 
-public class Tank extends GameObjects {
+public class Tank  {
 
     private int armor;
     private double speed;

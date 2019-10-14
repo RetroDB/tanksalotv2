@@ -5,11 +5,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
+import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
-public class PlayerTank extends GameObjects implements KeyboardHandler, Movable {
+public class PlayerTank extends Movable implements KeyboardHandler {
 
     private Picture pic;
     private final double MAX_SPEED = 0.3;
@@ -18,9 +20,12 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
     private double speed;
     private CollisionDetector collisionDetector;
 
-    public PlayerTank(int x, int y, int width, int height, String path) {
-        super(x, y, width, height, path);
+    public PlayerTank(int x, int y, int width, int height, String path, Field myField) {
+        super(x, y, width, height, path, myField);
         this.speed = 0;
+        this.keyboard = new Keyboard(this);
+        super.setPic(new Picture(super.getX(), super.getY(), super.getPath()));
+        super.getPic().draw();
     }
 
 
@@ -58,14 +63,49 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
 
     }
 
+    @Override
+    public void moveInDirection(FieldDirection direction, int distance) {
+        switch (direction) {
 
-
-
-
-
+            case UP:
+                super.moveUp(distance);
+                super.getPic().load("resources/pics/UpTank.png");
+                break;
+            case DOWN:
+                super.moveDown(distance);
+                super.getPic().load("resources/pics/DownTank.png");
+                break;
+            case LEFT:
+               super.moveLeft(distance);
+                super.getPic().load("resources/pics/LeftTank.png");
+                break;
+            case RIGHT:
+                super.moveRight(distance);
+                super.getPic().load("resources/pics/RightTank.png");
+                break;
+        }
+    }
 
     @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
+    public void keyPressed(KeyboardEvent e) {
+
+        switch (e.getKey()) {
+            case KeyboardEvent.KEY_A:
+                super.setCurrentDirection(FieldDirection.LEFT);
+                break;
+            case KeyboardEvent.KEY_D:
+                super.setCurrentDirection(FieldDirection.RIGHT);
+                break;
+            case KeyboardEvent.KEY_W:
+                super.setCurrentDirection(FieldDirection.UP);
+                break;
+            case KeyboardEvent.KEY_S:
+                super.setCurrentDirection(FieldDirection.DOWN);
+                break;
+        }
+
+        accelerate(super.getCurrentDirection());
+
 
     }
 
@@ -79,8 +119,4 @@ public class PlayerTank extends GameObjects implements KeyboardHandler, Movable 
         this.collisionDetector = collisionDetector;
     }
 
-    @Override
-    public void move() {
-        //accelerate(currenDirection);
-    }
 }
