@@ -2,6 +2,7 @@ package org.academiadecodigo.vimdiesels.tanksalot.gameobjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
+import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
 public class Bullet extends Movable {
@@ -24,7 +25,6 @@ public class Bullet extends Movable {
 
                 case UP:
                     moveUp(DISTANCE);
-                    //this.getPic().translate(0, 15); Not working
                     break;
                 case RIGHT:
                     moveRight(DISTANCE);
@@ -44,7 +44,6 @@ public class Bullet extends Movable {
 
             if (this.getX() == 0 || this.getY() == 0 ||
                     this.getY() == 780 || this.getX() == 780){
-
                 this.die();
             }
 
