@@ -71,12 +71,12 @@ public class StageOne {
 
         elements[37]  = getElement(220,670,0,0, "resources/pics/microwave.png");
         elements[38]  = getElement(280,670,0,0, "resources/pics/microwave.png");
+        CollisionDetector playerCollisionDetector = new CollisionDetector(elements);
+        player = new PlayerTank(460, 730, 60, 60,"./resources/pics/UpTank.png",myField,
+                playerCollisionDetector);
 
-        player = new PlayerTank(460, 730, 60, 60,"./resources/pics/UpTank.png",myField);
-        CollisionDetector collisionDetector = new CollisionDetector(elements);
 
 
-        player.setCollisionDetector(collisionDetector);
 
         player.init();
 
