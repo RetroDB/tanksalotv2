@@ -18,6 +18,11 @@ public abstract class Movable extends GameObjects {
         this.speed = 0;
     }
 
+    public Movable(int x, int y, int width, int height, String path) {
+        super(x, y, width, height, path);
+        this.speed = 0;
+    }
+
     public void setCollisionDetector(CollisionDetector collisionDetector) {
         this.collisionDetector = collisionDetector;
     }

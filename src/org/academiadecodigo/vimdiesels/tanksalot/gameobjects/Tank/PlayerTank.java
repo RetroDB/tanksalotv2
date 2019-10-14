@@ -134,30 +134,36 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
         FieldDirection direction = this.getCurrentDirection();
 
+
             switch (direction) {
 
                 case UP:
                     bullet = new Bullet(this.getX(), this.getY() - 20, 15, 15,
-                            "./resources/pics/Bullet.png", this.getMyField());
-                    bullet.setCollisionDetector(this.getCollisionDetector());
-                    bullet.move(direction);
+                            "./resources/pics/Bullet.png", this);
+                    //bullet.setCollisionDetector(this.getCollisionDetector());
+                    //bullet.move(direction);
                     break;
                 case DOWN:
                     bullet = new Bullet(this.getX(), this.getY() + 60, 15, 15,
-                            "./resources/pics/Bullet.png", this.getMyField());
+                            "./resources/pics/Bullet.png", this);
                     bullet.move(direction);
                     break;
                 case RIGHT:
                     bullet = new Bullet(this.getX() + 60, this.getY(), 15, 15,
-                            "./resources/pics/Bullet.png", this.getMyField());
-                    bullet.move(direction);
+                            "./resources/pics/Bullet.png", this);
+                    //bullet.move(direction);
                     break;
                 case LEFT:
                     bullet = new Bullet(this.getX() - 20, this.getY(), 15, 15,
-                            "./resources/pics/Bullet.png", this.getMyField());
-                    bullet.move(direction);
+                            "./resources/pics/Bullet.png", this);
+                    //bullet.move(direction);
                     break;
             }
+    }
+
+
+    public FieldDirection getRecentDirection() {
+        return recentDirection;
     }
 
     @Override

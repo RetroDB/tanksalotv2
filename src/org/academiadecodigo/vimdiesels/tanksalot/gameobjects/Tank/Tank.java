@@ -1,6 +1,5 @@
 package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank;
 
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 
 public class Tank  {
 
