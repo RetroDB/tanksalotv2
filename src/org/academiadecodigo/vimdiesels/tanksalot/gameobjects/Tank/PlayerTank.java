@@ -12,16 +12,11 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
 public class PlayerTank extends Movable implements KeyboardHandler {
 
-    private Picture pic;
     private final int MOTION_DISTANCE = 3;
-    private String path;
     private Keyboard keyboard;
-    private int speed;
-    private CollisionDetector collisionDetector;
 
     public PlayerTank(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
-        this.speed = 0;
         this.keyboard = new Keyboard(this);
         super.setPic(new Picture(super.getX(), super.getY(), super.getPath()));
         super.getPic().draw();
@@ -129,10 +124,10 @@ public class PlayerTank extends Movable implements KeyboardHandler {
     @Override
     public void accelerate(FieldDirection direction) {
         super.setCurrentDirection(direction);
-        this.speed = 15;
+        super.setSpeed(15);
 
         for (int i = 0; i < 1; i++) {
-            if (collisionDetector.check(this)) {
+            if (super.getCollisionDetector().check(this)) {
                 return;
             }
         }

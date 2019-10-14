@@ -18,31 +18,18 @@ public abstract class Movable extends GameObjects {
         this.speed = 0;
     }
 
-    public void setCollisionDetector(CollisionDetector collisionDetector){
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
         this.collisionDetector = collisionDetector;
     }
 
-    /*public void move(){
-        accelerate(currentDirection);
-
-    }*/
-
-    public void accelerate(FieldDirection direction){
+    public void accelerate(FieldDirection direction) {
         this.currentDirection = direction;
         this.speed = maxSpeed;
 
-        for (int i = 0; i < 1; i++) {
-            this.moveInDirection(direction,speed);
-            if (this.collisionDetector.check(this)) {
-                return;
-
-            }
-
-        }
-
+        this.moveInDirection(direction, speed);
     }
 
-    public void moveInDirection(FieldDirection direction, int distance){
+    public void moveInDirection(FieldDirection direction, int distance) {
 
         int initialX = super.getX();
         int initialY = super.getY();
@@ -63,20 +50,24 @@ public abstract class Movable extends GameObjects {
                 break;
         }
 
-        int dx = super.getX()-initialX;
-        int dy = super.getY()-initialY;
+        int dx = super.getX() - initialX;
+        int dy = super.getY() - initialY;
 
         super.getPic().translate(dx, dy);
 
     }
 
+    public CollisionDetector getCollisionDetector() {
+        return collisionDetector;
+    }
+
     // TODO: 14/10/2019 Read below
     //Gonna be used just by AI tanks?
-    public FieldDirection getOppositeDirection(FieldDirection direction){
+    public FieldDirection getOppositeDirection(FieldDirection direction) {
 
         FieldDirection dir = null;
 
-        switch (direction){
+        switch (direction) {
 
             case UP:
                 dir = FieldDirection.DOWN;
@@ -94,45 +85,53 @@ public abstract class Movable extends GameObjects {
         return dir;
     }
 
-    public void moveUp(int dist){
+    public void moveUp(int dist) {
         int initialY = getY();
         moveTo(0, -dist);
-        int dy = getY()-initialY;
-        if (this.collisionDetector.check(this)){
-            moveTo(0,-dy);
+        int dy = getY() - initialY;
+        if (this.collisionDetector.check(this)) {
+            moveTo(0, -dy);
         }
     }
-    public void moveDown(int dist){
+
+    public void moveDown(int dist) {
         int initialY = getY();
         moveTo(0, -dist);
-        int dy = getY()-initialY;
-        if (this.collisionDetector.check(this)){
-            moveTo(0,-dy);
+        int dy = getY() - initialY;
+        if (this.collisionDetector.check(this)) {
+            moveTo(0, -dy);
         }
     }
 
-    public void moveLeft(int dist){
+    public void moveLeft(int dist) {
         int initialX = getX();
         moveTo(-dist, 0);
-        int dx = getX()-initialX;
-        if (this.collisionDetector.check(this)){
-            moveTo(-dx,0);
+        int dx = getX() - initialX;
+        if (this.collisionDetector.check(this)) {
+            moveTo(-dx, 0);
         }
     }
 
-    protected void moveRight(int dist){
+    protected void moveRight(int dist) {
         int initialX = getX();
         moveTo(-dist, 0);
-        int dx = getX()-initialX;
-        if (this.collisionDetector.check(this)){
-            moveTo(-dx,0);
+        int dx = getX() - initialX;
+        if (this.collisionDetector.check(this)) {
+            moveTo(-dx, 0);
         }
 
     }
 
+    public int getSpeed() {
+        return speed;
+    }
 
-    public void moveTo(int x, int y){
-        super.translate(x,y);
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void moveTo(int x, int y) {
+        super.translate(x, y);
         super.getPic().draw();
 
     }
@@ -141,23 +140,8 @@ public abstract class Movable extends GameObjects {
         return currentDirection;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
     public void setCurrentDirection(FieldDirection currentDirection) {
         this.currentDirection = currentDirection;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public CollisionDetector getCollisionDetector() {
-        return collisionDetector;
-    }
 }
