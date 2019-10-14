@@ -7,7 +7,7 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
 public abstract class Movable extends GameObjects {
 
-    private FieldDirection currentDirection;
+    private FieldDirection currentDirection = FieldDirection.UP;
     private int speed;
     private int maxSpeed;
     private CollisionDetector collisionDetector;

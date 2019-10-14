@@ -6,6 +6,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
+import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Bullet;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
@@ -14,6 +15,8 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
     private final int MOTION_DISTANCE = 3;
     private Keyboard keyboard;
+    private Bullet bullet;
+    private FieldDirection recentDirection;
 
     public PlayerTank(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
@@ -76,18 +79,22 @@ public class PlayerTank extends Movable implements KeyboardHandler {
             case UP:
                 super.moveUp(distance);
                 super.getPic().load("resources/pics/UpTank.png");
+                recentDirection = FieldDirection.UP;
                 break;
             case DOWN:
                 super.moveDown(distance);
                 super.getPic().load("resources/pics/DownTank.png");
+                recentDirection = FieldDirection.DOWN;
                 break;
             case LEFT:
                super.moveLeft(distance);
                 super.getPic().load("resources/pics/LeftTank.png");
+                recentDirection = FieldDirection.LEFT;
                 break;
             case RIGHT:
                 super.moveRight(distance);
                 super.getPic().load("resources/pics/RightTank.png");
+                recentDirection = FieldDirection.RIGHT;
                 break;
         }
     }
@@ -112,6 +119,9 @@ public class PlayerTank extends Movable implements KeyboardHandler {
                 super.setCurrentDirection(FieldDirection.DOWN);
                 super.moveInDirection(FieldDirection.DOWN, -MOTION_DISTANCE);
                 break;
+                case KeyboardEvent.KEY_SPACE:
+                    shoot();
+                    break;
         }
 
         super.accelerate(super.getCurrentDirection());
@@ -120,6 +130,33 @@ public class PlayerTank extends Movable implements KeyboardHandler {
     }
 
 
+    public void shoot(){
+
+        FieldDirection direction = this.getCurrentDirection();
+
+            switch (direction) {
+
+                case UP:
+                    bullet = new Bullet(this.getX(), this.getY() - 15, 15, 15,
+                            "./resources/pics/Bullet.png", this.getMyField());
+                    bullet.move(direction);
+                    break;
+                case DOWN:
+                    bullet = new Bullet(this.getX(), this.getY() + 15, 15, 15,
+                            "./resources/pics/Bullet.png", this.getMyField());
+                    bullet.move(direction);
+                    break;
+                case RIGHT:
+                    bullet = new Bullet(this.getX() + 15, this.getY(), 15, 15,
+                            "./resources/pics/Bullet.png", this.getMyField());
+                    bullet.move(direction);
+                    break;
+                case LEFT:
+                    bullet = new Bullet(this.getX() - 15, this.getY(), 15, 15,
+                            "./resources/pics/Bullet.png", this.getMyField());
+                    break;
+            }
+    }
 
     @Override
     public void accelerate(FieldDirection direction) {

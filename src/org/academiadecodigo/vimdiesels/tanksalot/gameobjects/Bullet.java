@@ -7,7 +7,7 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 public class Bullet extends Movable {
 
     private boolean alive = true;
-    private final int DISTANCE = 5;
+    final int DISTANCE = 5;
 
     public Bullet(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
@@ -18,12 +18,13 @@ public class Bullet extends Movable {
 
     public void move(FieldDirection direction) {
 
-        while (alive) {
+        while (this.isAlive()) {
 
             switch (direction){
 
                 case UP:
                     moveUp(DISTANCE);
+                    //this.getPic().translate(0, 15); Not working
                     break;
                 case RIGHT:
                     moveRight(DISTANCE);
@@ -34,12 +35,15 @@ public class Bullet extends Movable {
                 case DOWN:
                     moveDown(DISTANCE);
                     break;
+                    default:
+                        moveUp(DISTANCE);
+                        break;
 
             }
             super.moveInDirection(direction, DISTANCE);
 
             if (this.getX() == 0 || this.getY() == 0 ||
-                    this.getY() == this.getMyField().getHeight() || this.getX() == this.getMyField().getWidth()){
+                    this.getY() == 780 || this.getX() == 780){
 
                 this.die();
             }
