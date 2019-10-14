@@ -6,7 +6,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
@@ -14,8 +13,7 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 public class PlayerTank extends Movable implements KeyboardHandler {
 
     private Picture pic;
-    private final int MAX_SPEED = 15;
-    private final int MOTIONDISTANCE = 3;
+    private final int MOTION_DISTANCE = 3;
     private String path;
     private Keyboard keyboard;
     private int speed;
@@ -105,19 +103,19 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         switch (e.getKey()) {
             case KeyboardEvent.KEY_A:
                 super.setCurrentDirection(FieldDirection.LEFT);
-                super.moveInDirection(FieldDirection.LEFT, MOTIONDISTANCE);
+                super.moveInDirection(FieldDirection.LEFT, MOTION_DISTANCE);
                 break;
             case KeyboardEvent.KEY_D:
                 super.setCurrentDirection(FieldDirection.RIGHT);
-                super.moveInDirection(FieldDirection.RIGHT, -MOTIONDISTANCE);
+                super.moveInDirection(FieldDirection.RIGHT, -MOTION_DISTANCE);
                 break;
             case KeyboardEvent.KEY_W:
                 super.setCurrentDirection(FieldDirection.UP);
-                super.moveInDirection(FieldDirection.UP, MOTIONDISTANCE);
+                super.moveInDirection(FieldDirection.UP, MOTION_DISTANCE);
                 break;
             case KeyboardEvent.KEY_S:
                 super.setCurrentDirection(FieldDirection.DOWN);
-                super.moveInDirection(FieldDirection.DOWN, -MOTIONDISTANCE);
+                super.moveInDirection(FieldDirection.DOWN, -MOTION_DISTANCE);
                 break;
         }
 
@@ -131,15 +129,15 @@ public class PlayerTank extends Movable implements KeyboardHandler {
     @Override
     public void accelerate(FieldDirection direction) {
         super.setCurrentDirection(direction);
-        this.speed = MAX_SPEED;
+        this.speed = 15;
 
         for (int i = 0; i < 1; i++) {
 
             if (collisionDetector.check(this)) {
-                this.moveInDirection(getOppositeDirection(direction), MOTIONDISTANCE);
+                this.moveInDirection(getOppositeDirection(direction), MOTION_DISTANCE);
                 continue;
             }
-            this.moveInDirection(direction, MOTIONDISTANCE);
+            this.moveInDirection(direction, MOTION_DISTANCE);
         }
     }
 
