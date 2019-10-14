@@ -14,11 +14,11 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 public class PlayerTank extends Movable implements KeyboardHandler {
 
     private Picture pic;
-    private final double MAX_SPEED = 0.3;
+    private final int MAX_SPEED = 15;
     private final int MOTIONDISTANCE = 3;
     private String path;
     private Keyboard keyboard;
-    private double speed;
+    private int speed;
     private CollisionDetector collisionDetector;
 
     public PlayerTank(int x, int y, int width, int height, String path, Field myField) {
@@ -109,21 +109,36 @@ public class PlayerTank extends Movable implements KeyboardHandler {
                 break;
         }
 
-        accelerate(super.getCurrentDirection());
+        super.accelerate(super.getCurrentDirection());
 
 
+    }
+
+    @Override
+    public void accelerate(FieldDirection direction) {
+        super.setCurrentDirection(direction);
+        this.speed = MAX_SPEED;
+
+        for (int i = 0; i < 1; i++) {
+            this.moveInDirection(direction, speed);
+            if (super.getCollisionDetector().check(this)) {
+                return;
+
+            }
+
+        }
     }
 
 
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public void keyReleased(KeyboardEvent e) {
 
     }
 
     @Override
     public void setCollisionDetector(CollisionDetector collisionDetector) {
-        this.collisionDetector = collisionDetector;
+        super.setCollisionDetector(collisionDetector);
     }
 
 }

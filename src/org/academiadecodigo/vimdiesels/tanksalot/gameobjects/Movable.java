@@ -117,4 +117,8 @@ public abstract class Movable extends GameObjects {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
+
+    public CollisionDetector getCollisionDetector() {
+        return collisionDetector;
+    }
 }
