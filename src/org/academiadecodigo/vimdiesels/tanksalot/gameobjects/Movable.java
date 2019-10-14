@@ -95,7 +95,7 @@ public abstract class Movable extends GameObjects {
     }
 
     public void moveUp(int dist){
-        int maxRowsUp = super.getMyField().getHeight();
+        //int maxRowsUp = Math.min(maxSpeed, super.g);
         moveTo(super.getX(), super.getY() - dist);
     }
     public void moveDown(int dist){

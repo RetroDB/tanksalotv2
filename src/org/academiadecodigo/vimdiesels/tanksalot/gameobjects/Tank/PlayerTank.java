@@ -141,7 +141,30 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         }
     }
 
+    @Override
+    public void moveUp(int dist) {
+        super.moveUp(dist);
+    }
 
+    @Override
+    public void moveDown(int dist) {
+        super.moveDown(dist);
+    }
+
+    @Override
+    public void moveLeft(int dist) {
+        super.moveLeft(dist);
+    }
+
+    @Override
+    protected void moveRight(int dist) {
+        super.moveRight(dist);
+    }
+
+    @Override
+    public void moveTo(int x, int y) {
+        super.moveTo(x, y);
+    }
 
     @Override
     public void keyReleased(KeyboardEvent e) {
