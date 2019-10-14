@@ -19,7 +19,7 @@ public abstract class Movable extends GameObjects {
     }
 
     public void setCollisionDetector(CollisionDetector collisionDetector){
-
+        this.collisionDetector = collisionDetector;
     }
 
     /*public void move(){
@@ -33,7 +33,7 @@ public abstract class Movable extends GameObjects {
 
         for (int i = 0; i < 1; i++) {
             this.moveInDirection(direction,speed);
-            if (collisionDetector.check(this)) {
+            if (this.collisionDetector.check(this)) {
                 return;
 
             }

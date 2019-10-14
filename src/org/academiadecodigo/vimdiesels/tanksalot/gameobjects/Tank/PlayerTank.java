@@ -30,8 +30,6 @@ public class PlayerTank extends Movable implements KeyboardHandler {
     }
 
 
-
-
     @Override
     public void init(){
 
@@ -62,6 +60,20 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         keyboard.addEventListener(down);
         keyboard.addEventListener(shoot);
 
+    }
+
+
+
+    @Override
+    public int getWidth(){
+
+        return super.getWidth();
+    }
+
+    @Override
+    public int getHeight(){
+
+        return super.getHeight();
     }
 
     @Override
@@ -114,18 +126,20 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
     }
 
+
+
     @Override
     public void accelerate(FieldDirection direction) {
         super.setCurrentDirection(direction);
         this.speed = MAX_SPEED;
 
         for (int i = 0; i < 1; i++) {
-            this.moveInDirection(direction, speed);
-            if (super.getCollisionDetector().check(this)) {
-                return;
 
+            if (collisionDetector.check(this)) {
+                this.moveInDirection(getOppositeDirection(direction), MOTIONDISTANCE);
+                continue;
             }
-
+            this.moveInDirection(direction, MOTIONDISTANCE);
         }
     }
 
