@@ -24,9 +24,11 @@ public class CollisionDetector {
     public boolean check(Movable tank) {
         for (GameObjects gameObject : gameObjects) {
             if (collides(tank, gameObject)) {
+                System.out.println("Shit's fucked");
                 return true;
             }
         }
+        System.out.println("Shit's not fucked");
         return false;
     }
 }

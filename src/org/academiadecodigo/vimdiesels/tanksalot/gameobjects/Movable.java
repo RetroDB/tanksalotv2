@@ -70,6 +70,30 @@ public abstract class Movable extends GameObjects {
 
     }
 
+    // TODO: 14/10/2019 Read below
+    //Gonna be used just by AI tanks?
+    public FieldDirection getOppositeDirection(FieldDirection direction){
+
+        FieldDirection dir = null;
+
+        switch (direction){
+
+            case UP:
+                dir = FieldDirection.DOWN;
+                break;
+            case DOWN:
+                dir = FieldDirection.UP;
+                break;
+            case RIGHT:
+                dir = FieldDirection.LEFT;
+                break;
+            case LEFT:
+                dir = FieldDirection.RIGHT;
+                break;
+        }
+        return dir;
+    }
+
     public void moveUp(int dist){
         int maxRowsUp = super.getMyField().getHeight();
         moveTo(super.getX(), super.getY() - dist);
