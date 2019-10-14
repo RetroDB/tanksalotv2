@@ -33,10 +33,10 @@ public abstract class Movable extends GameObjects {
 
         for (int i = 0; i < 1; i++) {
             this.moveInDirection(direction,speed);
-            //if (collisionDetector.check(this)){
+            if (collisionDetector.check(this)) {
                 return;
 
-            //}
+            }
 
         }
 
@@ -72,7 +72,7 @@ public abstract class Movable extends GameObjects {
 
     public void moveUp(int dist){
         int maxRowsUp = super.getMyField().getHeight();
-        moveTo(super.getX(), dist);
+        moveTo(super.getX(), super.getY() - dist);
     }
     public void moveDown(int dist){
         int maxRowsDown = Math.min(super.getMyField().getHeight()-(super.getY()+1), dist);

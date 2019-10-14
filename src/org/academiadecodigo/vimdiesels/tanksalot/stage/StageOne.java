@@ -11,7 +11,7 @@ public class StageOne {
     private GameObjects[] elements;
     private CollisionDetector collisionDetector;
     private Field myField;
-
+    PlayerTank tank;
 
     public StageOne(int numberOfElements, Field myField) {
         this.myField = myField;
@@ -74,6 +74,15 @@ public class StageOne {
 
 
         elements[39] = new PlayerTank(460, 730, 60, 60,"./resources/pics/UpTank.png",myField);
+        CollisionDetector collisionDetector = new CollisionDetector(elements);
+
+        if (elements[39] instanceof PlayerTank){
+
+            tank = (PlayerTank) elements[39];
+            tank.setCollisionDetector(collisionDetector);
+
+        }
+
 
         elements[39].init();
 

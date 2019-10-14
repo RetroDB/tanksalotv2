@@ -15,6 +15,7 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
     private Picture pic;
     private final double MAX_SPEED = 0.3;
+    private final int MOTIONDISTANCE = 3;
     private String path;
     private Keyboard keyboard;
     private double speed;
@@ -92,15 +93,19 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         switch (e.getKey()) {
             case KeyboardEvent.KEY_A:
                 super.setCurrentDirection(FieldDirection.LEFT);
+                super.moveInDirection(FieldDirection.LEFT, MOTIONDISTANCE);
                 break;
             case KeyboardEvent.KEY_D:
                 super.setCurrentDirection(FieldDirection.RIGHT);
+                super.moveInDirection(FieldDirection.RIGHT, -MOTIONDISTANCE);
                 break;
             case KeyboardEvent.KEY_W:
                 super.setCurrentDirection(FieldDirection.UP);
+                super.moveInDirection(FieldDirection.UP, MOTIONDISTANCE);
                 break;
             case KeyboardEvent.KEY_S:
                 super.setCurrentDirection(FieldDirection.DOWN);
+                super.moveInDirection(FieldDirection.DOWN, -MOTIONDISTANCE);
                 break;
         }
 

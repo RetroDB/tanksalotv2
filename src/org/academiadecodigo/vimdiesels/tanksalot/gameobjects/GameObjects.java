@@ -66,7 +66,6 @@ public abstract class GameObjects {
         this.width = width;
     }
 
-
     public Field getMyField() {
         return myField;
     }
