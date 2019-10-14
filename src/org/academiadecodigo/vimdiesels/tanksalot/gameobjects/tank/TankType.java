@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank;
+package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.tank;
 
 public enum TankType {
 

@@ -2,7 +2,6 @@ package org.academiadecodigo.vimdiesels.tanksalot.stage;
 
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank.PlayerTank;
 
 public class CollisionDetector {
 

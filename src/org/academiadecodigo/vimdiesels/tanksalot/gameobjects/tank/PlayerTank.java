@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank;
+package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.tank;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

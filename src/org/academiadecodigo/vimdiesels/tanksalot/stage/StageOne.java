@@ -3,8 +3,7 @@ package org.academiadecodigo.vimdiesels.tanksalot.stage;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.NonDestroyable;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank.PlayerTank;
+import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.tank.PlayerTank;
 
 public class StageOne {
 
