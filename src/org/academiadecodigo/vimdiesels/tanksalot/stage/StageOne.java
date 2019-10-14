@@ -85,6 +85,10 @@ public class StageOne {
 
         intro.play(true);
 
+        Sound music = new Sound("/resources/sounds/music1.wav");
+
+        music.play(true);
+
 
         player.setCollisionDetector(collisionDetector);
 
