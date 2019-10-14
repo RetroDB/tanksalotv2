@@ -132,13 +132,11 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         this.speed = 15;
 
         for (int i = 0; i < 1; i++) {
-
             if (collisionDetector.check(this)) {
-                this.moveInDirection(getOppositeDirection(direction), MOTION_DISTANCE);
-                continue;
+                return;
             }
-            this.moveInDirection(direction, MOTION_DISTANCE);
         }
+        this.moveInDirection(direction, MOTION_DISTANCE);
     }
 
     @Override

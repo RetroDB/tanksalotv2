@@ -9,9 +9,7 @@ import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank.PlayerTank;
 public class StageOne {
 
     private GameObjects[] elements;
-    private CollisionDetector collisionDetector;
     private Field myField;
-    PlayerTank player;
 
     public StageOne(int numberOfElements, Field myField) {
         this.myField = myField;
@@ -72,7 +70,7 @@ public class StageOne {
         elements[37]  = getElement(220,670,0,0, "resources/pics/microwave.png");
         elements[38]  = getElement(280,670,0,0, "resources/pics/microwave.png");
 
-        player = new PlayerTank(460, 730, 60, 60,"./resources/pics/UpTank.png",myField);
+        PlayerTank player = new PlayerTank(460, 730, 60, 60, "./resources/pics/UpTank.png", myField);
         CollisionDetector collisionDetector = new CollisionDetector(elements);
 
 

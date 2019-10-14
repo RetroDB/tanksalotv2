@@ -45,7 +45,7 @@ public abstract class GameObjects {
         return width;
     }
 
-    public void translateO(int x, int y){
+    public void translate(int x, int y){
         this.x += x;
         this.y += y;
     }

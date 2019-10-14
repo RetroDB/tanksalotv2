@@ -95,29 +95,44 @@ public abstract class Movable extends GameObjects {
     }
 
     public void moveUp(int dist){
-        //int maxRowsUp = Math.min(maxSpeed, super.g);
-        moveTo(super.getX(), super.getY() - dist);
+        int initialY = getY();
+        moveTo(0, -dist);
+        int dy = getY()-initialY;
+        if (this.collisionDetector.check(this)){
+            moveTo(0,-dy);
+        }
     }
     public void moveDown(int dist){
-        int maxRowsDown = Math.min(super.getMyField().getHeight()-(super.getY()+1), dist);
-        moveTo(super.getX(), super.getY()-maxRowsDown);
+        int initialY = getY();
+        moveTo(0, -dist);
+        int dy = getY()-initialY;
+        if (this.collisionDetector.check(this)){
+            moveTo(0,-dy);
+        }
     }
 
     public void moveLeft(int dist){
-        int maxRowsLeft = Math.min(dist, super.getX());
-        moveTo(super.getX()-maxRowsLeft, super.getY());
+        int initialX = getX();
+        moveTo(-dist, 0);
+        int dx = getX()-initialX;
+        if (this.collisionDetector.check(this)){
+            moveTo(-dx,0);
+        }
     }
 
     protected void moveRight(int dist){
-        int maxRowsRight = Math.min(super.getMyField().getWidth()-(super.getX()+1), dist);
-        moveTo(super.getX()-maxRowsRight, super.getY());
+        int initialX = getX();
+        moveTo(-dist, 0);
+        int dx = getX()-initialX;
+        if (this.collisionDetector.check(this)){
+            moveTo(-dx,0);
+        }
 
     }
 
 
     public void moveTo(int x, int y){
-        super.setX(x);
-        super.setY(y);
+        super.translate(x,y);
         super.getPic().draw();
 
     }
