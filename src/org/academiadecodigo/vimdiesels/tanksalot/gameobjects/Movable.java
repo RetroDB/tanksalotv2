@@ -1,6 +1,5 @@
 package org.academiadecodigo.vimdiesels.tanksalot.gameobjects;
 
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
@@ -15,7 +14,6 @@ public abstract class Movable extends GameObjects {
 
     public Movable(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
-        this.currentDirection = FieldDirection.UP;
         this.speed = 0;
     }
 
@@ -60,6 +58,10 @@ public abstract class Movable extends GameObjects {
 
     public CollisionDetector getCollisionDetector() {
         return collisionDetector;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
     // TODO: 14/10/2019 Read below

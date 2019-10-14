@@ -117,11 +117,6 @@ public class PlayerTank extends Movable implements KeyboardHandler {
     }
 
 
-
-    @Override
-    public void accelerate(FieldDirection direction) {
-    }
-
     @Override
     public void moveUp(int dist) {
         super.moveUp(dist);

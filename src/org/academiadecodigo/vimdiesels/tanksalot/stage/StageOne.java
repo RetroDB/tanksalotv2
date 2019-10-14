@@ -102,12 +102,12 @@ public class StageOne {
     }
 
     private void generateEnemyTanks(){
-        int[] positionInX = new int[] {634, 46, 28, 637};
+        int[] positionInX = new int[] {634, 48, 20, 637};
         int[] positionInY = new int[] {157, 55, 724, 730};
         CollisionDetector colD = new CollisionDetector(elements);
         for (int i = 0; i < enemyTanks.length; i++) {
             enemyTanks[i] = new Tank(positionInX[i],positionInY[i],40, 40,
-                    "resources/pics/DownLightTank.png",myField);
+                    "resources/pics/UpArmorTank.png",myField);
             enemyTanks[i].setCollisionDetector(colD);
 
         }

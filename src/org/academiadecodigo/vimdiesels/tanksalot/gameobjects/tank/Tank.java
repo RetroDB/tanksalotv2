@@ -7,26 +7,27 @@ import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
 public class Tank extends Movable {
+    private FieldDirection currentDirection;
 
-    private boolean destroyed;
-    private FieldDirection direction;
-    private final int directionChangeProbability = 10;
-    private Tank[] tanks;
 
     public Tank(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
         super.setPic(new Picture(super.getX(), super.getY(), super.getPath()));
         super.getPic().draw();
-        this.destroyed = false;
+        currentDirection = FieldDirection.values()[(int)(Math.random()*
+                FieldDirection.values().length)];
+
     }
 
     public FieldDirection chooseDirection() {
-        FieldDirection newDirection = getCurrentDirection();
+        FieldDirection newDirection = currentDirection;
+        System.out.println(currentDirection);
 
+        int directionChangeProbability = 4;
         if (Math.random() > (double) directionChangeProbability / 10) {
             newDirection = FieldDirection.values()[(int) (Math.random() * FieldDirection.values().length)];
 
-            if (newDirection.isOpposite(getCurrentDirection())) {
+            if (newDirection.isOpposite(currentDirection)) {
                 return chooseDirection();
             }
         }
@@ -38,12 +39,57 @@ public class Tank extends Movable {
     }
 
     @Override
+    public void moveUp(int dist) {
+        int initialY = getY();
+        moveTo(0, -dist);
+        int dy = getY() - initialY;
+        if (super.getCollisionDetector().check(this)) {
+            currentDirection = getOppositeDirection(currentDirection);
+            moveTo(0, -dy);
+        }
+    }
+
+    @Override
+    public void moveDown(int dist) {
+        int initialY = getY();
+        moveTo(0, -dist);
+        int dy = getY() - initialY;
+        if (super.getCollisionDetector().check(this)) {
+            currentDirection = getOppositeDirection(currentDirection);
+            moveTo(0, -dy);
+        }
+    }
+
+    @Override
+    public void moveLeft(int dist) {
+        int initialX = getX();
+        moveTo(-dist, 0);
+        int dx = getX() - initialX;
+        if (super.getCollisionDetector().check(this)) {
+            currentDirection = getOppositeDirection(currentDirection);
+            moveTo(-dx, 0);
+        }
+    }
+
+    @Override
+    protected void moveRight(int dist) {
+        int initialX = getX();
+        moveTo(-dist, 0);
+        int dx = getX() - initialX;
+        if (super.getCollisionDetector().check(this)) {
+            currentDirection = getOppositeDirection(currentDirection);
+            moveTo(-dx, 0);
+        }
+
+    }
+
+    @Override
     public void accelerate(FieldDirection direction) {
-        super.setCurrentDirection(direction);
-        super.setSpeed(3);
+        setCurrentDirection(direction);
+        super.setSpeed(super.getMaxSpeed());
 
         for (int i = 0; i < 1; i++) {
-            super.moveInDirection(super.getCurrentDirection(),3);
+            moveInDirection(super.getCurrentDirection(),3);
             }
     }
 
@@ -63,7 +109,7 @@ public class Tank extends Movable {
                 super.getPic().load("resources/pics/LeftArmorTank.png");
                 break;
             case RIGHT:
-                super.moveUp(distance);
+                super.moveRight(distance);
                 super.getPic().load("resources/pics/RightArmorTank.png");
                 break;
         }
@@ -84,31 +130,6 @@ public class Tank extends Movable {
         super.setCollisionDetector(collisionDetector);
     }
 
-
-    @Override
-    public void moveUp(int dist) {
-        super.moveUp(dist);
-    }
-
-    @Override
-    public void moveDown(int dist) {
-        super.moveDown(dist);
-    }
-
-    @Override
-    public void moveLeft(int dist) {
-        super.moveLeft(dist);
-    }
-
-    @Override
-    protected void moveRight(int dist) {
-        super.moveRight(dist);
-    }
-
-    @Override
-    public FieldDirection getCurrentDirection() {
-        return super.getCurrentDirection();
-    }
 
     @Override
     public void setCurrentDirection(FieldDirection currentDirection) {
