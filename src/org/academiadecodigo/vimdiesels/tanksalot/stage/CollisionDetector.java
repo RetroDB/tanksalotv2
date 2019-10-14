@@ -29,6 +29,7 @@ public class CollisionDetector {
     public boolean check(Movable tank) {
 
         for (GameObjects gameObject : gameObjects) {
+            System.out.println("----");
 
             System.out.println("TANK");
             System.out.println(tank);

@@ -24,6 +24,15 @@ public abstract class GameObjects {
 
     }
 
+    public GameObjects(int x, int y, int width, int height, Field myField) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+        this.myField = myField;
+
+    }
+
     public void init(){
         this.pic.draw();
 
@@ -45,7 +54,7 @@ public abstract class GameObjects {
         return width;
     }
 
-    public void translateO(int x, int y){
+    public void translate(int x, int y){
         this.x += x;
         this.y += y;
     }

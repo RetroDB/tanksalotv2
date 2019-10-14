@@ -6,33 +6,20 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Bullet;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
-import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Bullet;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Movable;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.CollisionDetector;
 import org.academiadecodigo.vimdiesels.tanksalot.stage.FieldDirection;
 
 public class PlayerTank extends Movable implements KeyboardHandler {
 
-    private Picture pic;
-    private final int MAX_SPEED = 15;
     private final int MOTION_DISTANCE = 3;
-    private String path;
     private Keyboard keyboard;
-    private int speed;
-    private CollisionDetector collisionDetector;
-    private boolean shot;
-    private Bullet bullet;
 
-    public PlayerTank(int x, int y, int width, int height, String path, Field myField,
-                      CollisionDetector collisionDetector) {
+    public PlayerTank(int x, int y, int width, int height, String path, Field myField) {
         super(x, y, width, height, path, myField);
-        this.speed = 0;
         this.keyboard = new Keyboard(this);
         super.setPic(new Picture(super.getX(), super.getY(), super.getPath()));
         super.getPic().draw();
-        this.collisionDetector = collisionDetector;
     }
 
 
@@ -87,11 +74,8 @@ public class PlayerTank extends Movable implements KeyboardHandler {
         switch (direction) {
 
             case UP:
-                //if (!collisionDetector.check(this)) {
-                    super.moveUp(distance);
-                    super.getPic().load("resources/pics/UpTank.png");
-                    super.moveInDirection(FieldDirection.UP, MOTION_DISTANCE);
-                //}
+                super.moveUp(distance);
+                super.getPic().load("resources/pics/UpTank.png");
                 break;
             case DOWN:
                 super.moveDown(distance);
@@ -128,9 +112,6 @@ public class PlayerTank extends Movable implements KeyboardHandler {
                 super.setCurrentDirection(FieldDirection.DOWN);
                 super.moveInDirection(FieldDirection.DOWN, -MOTION_DISTANCE);
                 break;
-                case KeyboardEvent.KEY_SPACE:
-                    shoot();
-                    break;
         }
 
         super.accelerate(super.getCurrentDirection());
@@ -138,67 +119,54 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
     }
 
-    public void shoot(){
-
-        FieldDirection direction = super.getCurrentDirection();
-
-        if (this.bullet == null || !bullet.isAlive()){
-
-            switch (direction){
-                case UP:
-                    this.bullet = new Bullet(getX(), (getY() - 5), 15, 15,
-                            "./resources/pics/Bullet.png", getMyField());
-                    bullet.move(direction);
-                    break;
-                case DOWN:
-                    this.bullet = new Bullet(getX(), (getY() + 5), 15, 15,
-                            "./resources/pics/Bullet.png", getMyField());
-                    bullet.move(direction);
-                    break;
-                case LEFT:
-                    this.bullet = new Bullet((getX() - 5), getY(), 15, 15,
-                            "./resources/pics/Bullet.png", getMyField());
-                    bullet.move(direction);
-                    break;
-                case RIGHT:
-                    this.bullet = new Bullet((getX() + 5), getY(), 15, 15,
-                            "./resources/pics/Bullet.png", getMyField());
-                    bullet.move(direction);
-                    break;
-            }
-
-
-
-        }
-
-    }
 
 
     @Override
     public void accelerate(FieldDirection direction) {
         super.setCurrentDirection(direction);
-        this.speed = MAX_SPEED;
+        super.setSpeed(15);
 
         for (int i = 0; i < 1; i++) {
-
-            /*if (collisionDetector.check(this)){
-                this.moveInDirection(getOppositeDirection(direction), MOTIONDISTANCE);
-                continue;
-            }*/
-            this.moveInDirection(direction, MOTION_DISTANCE);
+            if (super.getCollisionDetector().check(this)) {
+                return;
+            }
         }
+        this.moveInDirection(direction, MOTION_DISTANCE);
     }
 
+    @Override
+    public void moveUp(int dist) {
+        super.moveUp(dist);
+    }
 
+    @Override
+    public void moveDown(int dist) {
+        super.moveDown(dist);
+    }
+
+    @Override
+    public void moveLeft(int dist) {
+        super.moveLeft(dist);
+    }
+
+    @Override
+    protected void moveRight(int dist) {
+        super.moveRight(dist);
+    }
+
+    @Override
+    public void moveTo(int x, int y) {
+        super.moveTo(x, y);
+    }
 
     @Override
     public void keyReleased(KeyboardEvent e) {
 
     }
 
-/*    @Override
+    @Override
     public void setCollisionDetector(CollisionDetector collisionDetector) {
         super.setCollisionDetector(collisionDetector);
-    } */
+    }
 
 }
