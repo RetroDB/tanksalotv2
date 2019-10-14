@@ -66,9 +66,6 @@ public abstract class GameObjects {
         this.width = width;
     }
 
-    public void moveTo(int x, int y){
-
-    }
 
     public Field getMyField() {
         return myField;

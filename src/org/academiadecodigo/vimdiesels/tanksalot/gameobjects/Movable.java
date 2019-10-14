@@ -22,10 +22,10 @@ public abstract class Movable extends GameObjects {
 
     }
 
-    public void move(){
+    /*public void move(){
         accelerate(currentDirection);
 
-    }
+    }*/
 
     public void accelerate(FieldDirection direction){
         this.currentDirection = direction;
@@ -44,6 +44,9 @@ public abstract class Movable extends GameObjects {
 
     public void moveInDirection(FieldDirection direction, int distance){
 
+        int initialX = super.getX();
+        int initialY = super.getY();
+
         switch (direction) {
 
             case UP:
@@ -60,29 +63,38 @@ public abstract class Movable extends GameObjects {
                 break;
         }
 
+        int dx = super.getX()-initialX;
+        int dy = super.getY()-initialY;
+
+        super.getPic().translate(dx, dy);
+
     }
 
     public void moveUp(int dist){
         int maxRowsUp = super.getMyField().getHeight();
-        super.getPic().translate(super.getX(), super.getY()-maxRowsUp);
-        moveTo(super.getX(), super.getY()-dist);
+        moveTo(super.getX(), dist);
     }
     public void moveDown(int dist){
         int maxRowsDown = Math.min(super.getMyField().getHeight()-(super.getY()+1), dist);
-        super.getPic().translate(super.getX(),super.getY()-maxRowsDown);
         moveTo(super.getX(), super.getY()-maxRowsDown);
     }
 
     public void moveLeft(int dist){
         int maxRowsLeft = Math.min(dist, super.getX());
-        super.getPic().translate(super.getX()-maxRowsLeft, super.getY());
         moveTo(super.getX()-maxRowsLeft, super.getY());
     }
 
     protected void moveRight(int dist){
         int maxRowsRight = Math.min(super.getMyField().getWidth()-(super.getX()+1), dist);
-        super.getPic().translate(super.getX()-maxRowsRight, super.getY());
         moveTo(super.getX()-maxRowsRight, super.getY());
+
+    }
+
+
+    public void moveTo(int x, int y){
+        super.setX(x);
+        super.setY(y);
+        super.getPic().draw();
 
     }
 
