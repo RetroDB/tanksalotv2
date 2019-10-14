@@ -90,7 +90,7 @@ public class StageOne {
         player.setCollisionDetector(collisionDetector);
 
         player.init();
-        
+
 
     }
 
