@@ -85,6 +85,7 @@ public class StageOne {
 
         player.init();
 
+        while (player.)
 
 
 

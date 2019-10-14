@@ -139,6 +139,7 @@ public class PlayerTank extends Movable implements KeyboardHandler {
                 case UP:
                     bullet = new Bullet(this.getX(), this.getY() - 20, 15, 15,
                             "./resources/pics/Bullet.png", this.getMyField());
+                    bullet.setCollisionDetector(this.getCollisionDetector());
                     bullet.move(direction);
                     break;
                 case DOWN:
