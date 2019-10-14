@@ -4,21 +4,45 @@ import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.NonDestroyable;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.tank.PlayerTank;
+import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.tank.Tank;
 
 public class StageOne {
 
     private GameObjects[] elements;
+    private Tank[] enemyTanks;
     private Field myField;
 
-    public StageOne(int numberOfElements, Field myField) {
+    public StageOne(int numberOfEenemies, int numberOfElements, Field myField) {
         this.myField = myField;
         this.elements = new GameObjects[numberOfElements];
+        this.enemyTanks = new Tank[numberOfEenemies];
     }
 
     public void init(){
+        PlayerTank player = new PlayerTank(460, 730, 40, 40, "./resources/pics/UpTank.png", myField);
+        CollisionDetector collisionDetector = new CollisionDetector(elements);
+        player.setCollisionDetector(collisionDetector);
+        player.init();
+
+        generateElements();
+
+        generateEnemyTanks();
+
+        while (true){
+            moveAllTanks();
+        }
 
 
+    }
 
+    private void moveAllTanks(){
+        for (Tank tank: enemyTanks){
+            tank.move();
+        }
+
+    }
+
+    private void generateElements(){
         elements[0] = getElement(70,130, 60, 120, "./resources/pics/lunch_table.png");
         elements[1] = getElement(70,310, 60, 120, "./resources/pics/lunch_table.png");
 
@@ -75,23 +99,21 @@ public class StageOne {
         elements[41] = getElement(10, 10, 780, 0);
         elements[42] = getElement(770, 0, 0, 780);
 
-
-        PlayerTank player = new PlayerTank(460, 730, 40, 40, "./resources/pics/UpTank.png", myField);
-        CollisionDetector collisionDetector = new CollisionDetector(elements);
-
-
-        player.setCollisionDetector(collisionDetector);
-
-        player.init();
-
-
-
-
-
     }
 
+    private void generateEnemyTanks(){
+        int[] positionInX = new int[] {634, 46, 28, 637};
+        int[] positionInY = new int[] {157, 55, 724, 730};
+        CollisionDetector colD = new CollisionDetector(elements);
+        for (int i = 0; i < enemyTanks.length; i++) {
+            enemyTanks[i] = new Tank(positionInX[i],positionInY[i],40, 40,
+                    "resources/pics/DownLightTank.png",myField);
+            enemyTanks[i].setCollisionDetector(colD);
 
-    public NonDestroyable getElement(int x, int y, int width, int height, String path){
+        }
+    }
+
+    private NonDestroyable getElement(int x, int y, int width, int height, String path){
 
         NonDestroyable nonDestroyable = new NonDestroyable(x, y, width, height, path, this.myField);
         nonDestroyable.init();
@@ -100,7 +122,7 @@ public class StageOne {
 
     }
 
-    public NonDestroyable getElement(int x, int y, int width, int height){
+    private NonDestroyable getElement(int x, int y, int width, int height){
 
         NonDestroyable nonDestroyable = new NonDestroyable(x, y, width, height, this.myField);
         nonDestroyable.init();

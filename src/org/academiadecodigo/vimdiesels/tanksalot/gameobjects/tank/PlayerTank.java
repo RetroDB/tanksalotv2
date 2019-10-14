@@ -113,25 +113,13 @@ public class PlayerTank extends Movable implements KeyboardHandler {
                 super.moveInDirection(FieldDirection.DOWN, -MOTION_DISTANCE);
                 break;
         }
-
         super.accelerate(super.getCurrentDirection());
-
-
     }
 
 
 
     @Override
     public void accelerate(FieldDirection direction) {
-        super.setCurrentDirection(direction);
-        super.setSpeed(15);
-
-        for (int i = 0; i < 1; i++) {
-            if (super.getCollisionDetector().check(this)) {
-                return;
-            }
-        }
-        this.moveInDirection(direction, MOTION_DISTANCE);
     }
 
     @Override
