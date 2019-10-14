@@ -18,8 +18,8 @@ public abstract class Movable extends GameObjects {
         this.speed = 0;
     }
 
-    public Movable(int x, int y, int width, int height, String path) {
-        super(x, y, width, height, path);
+    public Movable(int x, int y, String path) {
+        super(x, y, path);
         this.speed = 0;
     }
 

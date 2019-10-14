@@ -19,8 +19,8 @@ public class Bullet extends Movable {
         this.getPic().draw();
     }
 
-    public Bullet(int x, int y, int width, int height, String path, PlayerTank playerTank) {
-        super(x, y, width, height, path);
+    public Bullet(int x, int y, String path, PlayerTank playerTank) {
+        super(x, y, path);
 
         this.setPic(new Picture(super.getX(), super.getY(), path));
         this.getPic().draw();
@@ -29,7 +29,6 @@ public class Bullet extends Movable {
 
     public void move(FieldDirection direction) {
 
-        direction = playerTank.getRecentDirection();
 
         while (this.isAlive()) {
 
@@ -55,17 +54,14 @@ public class Bullet extends Movable {
 
                 case DOWN:
                     moveDown(DISTANCE);
-                    this.getPic().translate(0,1);
+                    this.getPic().translate(0,DISTANCE);
                     super.moveInDirection(direction, DISTANCE);
                     break;
 
             }
 
 
-            /*if (this.getX() == 0 || this.getY() == 0 ||
-                    this.getY() == 780 || this.getX() == 780){
-                this.die();
-            }*/
+
 
             continue;
         }

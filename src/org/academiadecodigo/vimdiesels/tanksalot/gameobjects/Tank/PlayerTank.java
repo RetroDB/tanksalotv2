@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.tanksalot.gameobjects.Tank;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -78,22 +79,22 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
             case UP:
                 super.moveUp(distance);
-                super.getPic().load("resources/pics/UpTank.png");
+                super.getPic().load("resources/pics/ashUp.png");
                 recentDirection = FieldDirection.UP;
                 break;
             case DOWN:
                 super.moveDown(distance);
-                super.getPic().load("resources/pics/DownTank.png");
+                super.getPic().load("resources/pics/ashDown.png");
                 recentDirection = FieldDirection.DOWN;
                 break;
             case LEFT:
                super.moveLeft(distance);
-                super.getPic().load("resources/pics/LeftTank.png");
+                super.getPic().load("resources/pics/ashLeft.png");
                 recentDirection = FieldDirection.LEFT;
                 break;
             case RIGHT:
                 super.moveRight(distance);
-                super.getPic().load("resources/pics/RightTank.png");
+                super.getPic().load("resources/pics/ashRight.png");
                 recentDirection = FieldDirection.RIGHT;
                 break;
         }
@@ -134,28 +135,32 @@ public class PlayerTank extends Movable implements KeyboardHandler {
 
         FieldDirection direction = this.getCurrentDirection();
 
+        Sound ball = new Sound("/resources/sounds/atari_boom.wav");
+
 
             switch (direction) {
 
                 case UP:
-                    bullet = new Bullet(this.getX(), this.getY() - 20, 15, 15,
-                            "./resources/pics/Bullet.png", this);
-                    //bullet.setCollisionDetector(this.getCollisionDetector());
-                    //bullet.move(direction);
+                    bullet = new Bullet(this.getX(), this.getY(),
+                            "./resources/pics/poke_ball.png", this);
+
+                    ball.play(true);
                     break;
                 case DOWN:
-                    bullet = new Bullet(this.getX(), this.getY() + 60, 15, 15,
-                            "./resources/pics/Bullet.png", this);
-                    bullet.move(direction);
+                    bullet = new Bullet(this.getX(), this.getY(),
+                            "./resources/pics/poke_ball.png", this);
+                    ball.play(true);
                     break;
                 case RIGHT:
-                    bullet = new Bullet(this.getX() + 60, this.getY(), 15, 15,
-                            "./resources/pics/Bullet.png", this);
+                    bullet = new Bullet(this.getX(), this.getY(),
+                            "./resources/pics/poke_ball.png", this);
+                    ball.play(true);
                     //bullet.move(direction);
                     break;
                 case LEFT:
-                    bullet = new Bullet(this.getX() - 20, this.getY(), 15, 15,
-                            "./resources/pics/Bullet.png", this);
+                    bullet = new Bullet(this.getX(), this.getY(),
+                            "./resources/pics/poke_ball.png", this);
+                    ball.play(true);
                     //bullet.move(direction);
                     break;
             }

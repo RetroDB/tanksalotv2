@@ -33,7 +33,7 @@ public abstract class GameObjects {
 
     }
 
-    public GameObjects(int x, int y, int width, int height, String path) {
+    public GameObjects(int x, int y, String path) {
         this.x = x;
         this.y = y;
         this.height = height;

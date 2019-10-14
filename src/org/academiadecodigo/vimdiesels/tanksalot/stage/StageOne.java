@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.tanksalot.stage;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.vimdiesels.tanksalot.Field;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.GameObjects;
 import org.academiadecodigo.vimdiesels.tanksalot.gameobjects.NonDestroyable;
@@ -79,6 +80,10 @@ public class StageOne {
 
         PlayerTank player = new PlayerTank(460, 730, 40, 40, "./resources/pics/UpTank.png", myField);
         CollisionDetector collisionDetector = new CollisionDetector(elements);
+
+        Sound intro = new Sound("/resources/sounds/explode.wav");
+
+        intro.play(true);
 
 
         player.setCollisionDetector(collisionDetector);
